@@ -15,7 +15,6 @@
 // or implied.const xapi = require('xapi');
 
 // Set MAX_PEOPLE to max occupancy per fire marshall; 0 is used for testing
-
 const xapi = require('xapi');
 const MAX_PEOPLE=0;
 
@@ -24,7 +23,7 @@ function handleError(error) {
     console.log('Error', error);
 }
 
-// This function is called when user is prompted on Touch 10 to schedule a larger room
+// This function is called whenever user is prompted on Touch 10 to schedule a larger room
 // Could be enhanced to interface with a calendar system
 function showSchedule() {
         xapi.command('UserInterface Message Alert Display', {
@@ -33,7 +32,8 @@ function showSchedule() {
           Duration: 60
         });
    }
-// This function is called when a call first starts.  If too many people in room, it holds the call and prompts the user on the Touch 10
+
+// This function is called whenever a call first starts.  If too many people in room, it holds the call and prompts the user on the Touch 10
 function checkPeopleCountInCall(people) {
   if (people > MAX_PEOPLE) {
         xapi.command('Call Hold');
@@ -58,7 +58,7 @@ function checkPeopleCount(people) {
    }
 }
 
-// This function gets the current people count in the room after immediately after a call starts
+// This function gets the current people count in the room immediately after a call starts
 function callStarted() {
  const people = xapi.status.get('RoomAnalytics PeopleCount Current')
   .then(checkPeopleCountInCall);
@@ -73,7 +73,7 @@ xapi.event.on('UserInterface Message Prompt Response', (event) => {
     }
 });
 
-// Monitors for a successful call start message which is received on dial-in or dial-out
+// Monitors for a successful call start message which may be received on dial-in or dial-out
 xapi.event.on('CallSuccessful', callStarted);
   
 // Monitors for a change in people count
