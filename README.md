@@ -13,7 +13,7 @@ Installation:
 
 This macro may be installed on any Cisco Webex Room Kit, Room Kit Plus, Room Kit Pro, Room Kit Mini, Room 55, or Room 70 endpoint running CE 9.2 software or later.  It has been tested with CE 9.6.1 on a Cisco Room Kit.  It requires that the endpoint be registered on-prem due to the call hold/resume functionality that it leverages.
 
-	1.	Login to Cisco Endpoint web interface (default credentials are admin with no password)
+	1.	Login to Cisco Endpoint web interface with admin credentials
 	2.	Navigate to Setup--> Configuration--> RoomAnalytics
 	3.	Set PeopleCountOutOfCall and PeoplePresenceDetector to On
 	4.	Navitage to Integration --> Macro Editor
